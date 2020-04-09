@@ -1,0 +1,282 @@
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Randam Data Generator</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script type='text/javascript' src='js/script-generater.js'></script>
+  <script type='text/javascript' src='data/src_lastname.js'></script>
+  <script type='text/javascript' src='data/src_firstname_female.js'></script>
+  <script type='text/javascript' src='data/src_firstname_male.js'></script>
+  <script type='text/javascript' src='data/src_industry.js'></script>
+  <script type='text/javascript' src='data/src_zipaddress.js'></script>
+</head>
+
+<body>
+  <h1>Randam Data Generator</h1>
+  <div>
+    <table>
+      <tr>
+        <td><input type="checkbox" id="checkbox-uuid" /></td>
+        <td>UUID</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" id="checkbox-gender" /></td>
+        <td>性別</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" id="checkbox-lastname" /></td>
+        <td>姓</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" id="checkbox-firstname" /></td>
+        <td>名</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" id="checkbox-ageandbirthdate" /></td>
+        <td>生年月日/年齢</td>
+        <td><input type="number" id="age-start">&nbsp;-&nbsp;<input type="number" id="age-end"></td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" id="checkbox-tel" /></td>
+        <td>電話番号</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" id="checkbox-email" /></td>
+        <td>電子メール</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" id="checkbox-companyname" /></td>
+        <td>会社名</td>
+        <td>
+          <table>
+            <tr>
+              <td><input type="checkbox" id="checkbox-companyname-additional" /></td>
+              <td>装飾付き</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" id="checkbox-address" /></td>
+        <td>住所</td>
+        <td>
+          <table>
+            <tr>
+              <td><input type="checkbox" id="checkbox-address-all" /></td>
+              <td>全国</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>
+                <input type="checkbox" id="checkbox-address-hokkaido" />北海道
+                <input type="checkbox" id="checkbox-address-aomori" />青森県
+                <input type="checkbox" id="checkbox-address-iwate" />岩手県
+                <input type="checkbox" id="checkbox-address-akita" />秋田県
+                <input type="checkbox" id="checkbox-address-miyagi" />宮城県
+                <input type="checkbox" id="checkbox-address-yamagata" />山形県
+                <input type="checkbox" id="checkbox-address-fukushima" />福島県
+              </td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>
+                <input type="checkbox" id="checkbox-address-ibaraki" />茨城県
+                <input type="checkbox" id="checkbox-address-tochigi" />栃木県
+                <input type="checkbox" id="checkbox-address-gunma" />群馬県
+                <input type="checkbox" id="checkbox-address-saitama" />埼玉県
+                <input type="checkbox" id="checkbox-address-chiba" />千葉県
+                <input type="checkbox" id="checkbox-address-tokyo" />東京都
+                <input type="checkbox" id="checkbox-address-kanagawa" />神奈川県
+              </td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>
+                <input type="checkbox" id="checkbox-address-niigata" />新潟県
+                <input type="checkbox" id="checkbox-address-toyama" />富山県
+                <input type="checkbox" id="checkbox-address-ishikawa" />石川県
+                <input type="checkbox" id="checkbox-address-fukui" />福井県
+                <input type="checkbox" id="checkbox-address-nagano" />長野県
+                <input type="checkbox" id="checkbox-address-yamanashi" />山梨県
+              </td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>
+                <input type="checkbox" id="checkbox-address-shizuoka" />静岡県
+                <input type="checkbox" id="checkbox-address-aichi" />愛知県
+                <input type="checkbox" id="checkbox-address-gifu" />岐阜県
+                <input type="checkbox" id="checkbox-address-mie" />三重県
+              </td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>
+                <input type="checkbox" id="checkbox-address-shiga" />滋賀県
+                <input type="checkbox" id="checkbox-address-kyoto" />京都府
+                <input type="checkbox" id="checkbox-address-nara" />奈良県
+                <input type="checkbox" id="checkbox-address-osaka" />大阪府
+                <input type="checkbox" id="checkbox-address-wakayama" />和歌山県
+                <input type="checkbox" id="checkbox-address-hyogo" />兵庫県
+              </td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>
+                <input type="checkbox" id="checkbox-address-shimane" />島根県
+                <input type="checkbox" id="checkbox-address-tottori" />鳥取県
+                <input type="checkbox" id="checkbox-address-okayama" />岡山県
+                <input type="checkbox" id="checkbox-address-hiroshima" />広島県
+                <input type="checkbox" id="checkbox-address-yamaguchi" />山口県
+              </td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>
+                <input type="checkbox" id="checkbox-address-kagawa" />香川県
+                <input type="checkbox" id="checkbox-address-tokushima" />徳島県
+                <input type="checkbox" id="checkbox-address-ehime" />愛媛県
+                <input type="checkbox" id="checkbox-address-kochi" />高知県
+              </td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>
+                <input type="checkbox" id="checkbox-address-fukuoka" />福岡県
+                <input type="checkbox" id="checkbox-address-saga" />佐賀県
+                <input type="checkbox" id="checkbox-address-nagasaki" />長崎県
+                <input type="checkbox" id="checkbox-address-oita" />大分県
+                <input type="checkbox" id="checkbox-address-kumamoto" />熊本県
+                <input type="checkbox" id="checkbox-address-miyazaki" />宮崎県
+                <input type="checkbox" id="checkbox-address-kagoshima" />鹿児島県
+                <input type="checkbox" id="checkbox-address-okinawa" />沖縄県
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" id="checkbox-number" /></td>
+        <td>数（ランダム）</td>
+        <td>
+          <table>
+            <tr>
+              <td>最小</td>
+              <td>最大</td>
+            </tr>
+            <tr>
+              <td><input type="number" id="number-start"></td>
+              <td><input type="number" id="number-end"></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" id="checkbox-normrand" /></td>
+        <td>数（正規分布）</td>
+        <td>
+          <table>
+            <tr>
+              <td>平均</td>
+              <td>分散</td>
+            </tr>
+            <tr>
+              <td>
+                <input type="number" id="normrand-average">
+              </td>
+              <td>
+                <input type="number" id="normrand-sigma">
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" id="checkbox-linearregression" /></td>
+        <td>数（線形回帰）</td>
+        <td>
+          <table>
+            <tr>
+              <td>傾き</td>
+              <td>切片</td>
+              <td>x平均</td>
+              <td>x分散</td>
+              <td>y分散</td>
+            </tr>
+            <tr>
+              <td>
+                <input type="number" id="linearregression-slope" step="0.01" value="0.3">
+              </td>
+              <td>
+                <input type="number" id="linearregression-intercept" value="100">
+              </td>
+              <td>
+                <input type="number" id="linearregression-x-average" value="480">
+              </td>
+              <td>
+                <input type="number" id="linearregression-x-sigma" value="280">
+              </td>
+              <td>
+                <input type="number" id="linearregression-y-sigma" value="100">
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>      
+      <tr>
+        <td><input type="checkbox" id="checkbox-date" /></td>
+        <td>日付</td>
+        <td>
+          <table>
+            <tr>
+              <td>期間始日</td>
+              <td>期間終日</td>
+              <td>差分最小日数</td>
+              <td>差分最大日数</td>
+            </tr>
+            <tr>
+              <td><input type="date" id="date-start" /></td>
+              <td><input type="date" id="date-end" /></td>
+              <td><input type="number" id="date-duration-min" /></td>
+              <td><input type="number" id="date-duration-max" /></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" id="checkbox-text1" /></td>
+        <td>データ拡散</td>
+        <td>
+          <table>
+            <tr>
+              <td>データ</td>
+              <td>配分</td>
+            </tr>
+            <tr>
+              <td><textarea id="text1" rows="10"></textarea></td>
+              <td><textarea id="text1-ratio" rows="10"></textarea></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div>
+    <table>
+      <tr>
+        <td>出力レコード数</td>
+        <td><input id="maxnumber" type="number" value="100" /></td>
+      </tr>
+    </table>
+    <button onclick="createRandamData();">作成</button>
+    <button onclick="focusResult();">クリップボードにコピー</button>
+  </div>
+  <hr />
+  <div id="area-result">
+
+  </div>
+</body>
+
+</html>
