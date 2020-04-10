@@ -5,8 +5,6 @@ const SRC_STATE = ["北海道", "青森県", "岩手県", "宮城県", "秋田�
 
 const createRandamData = () => {
   const MAXNUMBER = document.getElementById('maxnumber').value;
-
-  let output = '<table>';
   let obj = {};
 
   //// UUID ////
@@ -290,24 +288,47 @@ const createRandamData = () => {
   }
 
   //// 書き出し ////
-  for (let i = 0; i < MAXNUMBER; i++) {
-    output += '<tr>';
+  let output = '<table>';
 
-    const keys = Object.keys(obj);
-    for (let j = 0; j < keys.length; j++) {
-
-      if (keys[j] === 'date1' || keys[j] === 'date2' || keys[j] === 'birthdate') {
-        const DATE = new Date(obj[keys[j]][i]);
-        output += '<td>' + DATE.getFullYear() + '-' + leftPad((DATE.getMonth() + 1), 2) + '-' + leftPad(DATE.getDate(), 2) + '</td>';
-      } else {
-        output += '<td>' + obj[keys[j]][i] + '</td>';
+  if(document.getElementById('radio-table').checked){
+    for (let i = 0; i < MAXNUMBER; i++) {
+      output += '<tr>';
+  
+      const keys = Object.keys(obj);
+      for (let j = 0; j < keys.length; j++) {
+  
+        if (keys[j] === 'date1' || keys[j] === 'date2' || keys[j] === 'birthdate') {
+          const DATE = new Date(obj[keys[j]][i]);
+          output += '<td>' + DATE.getFullYear() + '-' + leftPad((DATE.getMonth() + 1), 2) + '-' + leftPad(DATE.getDate(), 2) + '</td>';
+        } else {
+          output += '<td>' + obj[keys[j]][i] + '</td>';
+        }
+  
       }
-
+  
+      output += '</tr>';
+    }  
+  }else if(document.getElementById('radio-comma').checked){
+    for (let i = 0; i < MAXNUMBER; i++) {
+      output += '<tr><td>';
+  
+      const keys = Object.keys(obj);
+      for (let j = 0; j < keys.length; j++) {
+  
+        if (keys[j] === 'date1' || keys[j] === 'date2' || keys[j] === 'birthdate') {
+          const DATE = new Date(obj[keys[j]][i]);
+          output += DATE.getFullYear() + '-' + leftPad((DATE.getMonth() + 1), 2) + '-' + leftPad(DATE.getDate(), 2) + ',';
+        } else {
+          output += obj[keys[j]][i];
+          if(j !== keys.length - 1) output += ',';
+        }
+  
+      }
+  
+      output += '</td></tr>';
     }
-
-    output += '</tr>';
+  
   }
-
   output += '</table>';
   document.getElementById('area-result').innerHTML = output;
   console.log(obj);

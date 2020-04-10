@@ -36,7 +36,17 @@
       <tr>
         <td><input type="checkbox" id="checkbox-ageandbirthdate" /></td>
         <td>生年月日/年齢</td>
-        <td><input type="number" id="age-start">&nbsp;-&nbsp;<input type="number" id="age-end"></td>
+        <td>
+          <table>
+            <tr>
+              <td>最小年齢</td>
+              <td>最大年齢</td>
+            </tr>
+            <tr>
+              <td><input type="number" id="age-start"></td>
+              <td><input type="number" id="age-end"></td>
+            </tr>
+          </table>
       </tr>
       <tr>
         <td><input type="checkbox" id="checkbox-tel" /></td>
@@ -266,10 +276,26 @@
   <div>
     <table>
       <tr>
-        <td>出力レコード数</td>
-        <td><input id="maxnumber" type="number" value="100" /></td>
+        <td>出力</td>
+        <td>
+          <table>
+            <tr>
+              <td>レコード数</td>
+              <td>形式</td>
+            </tr>
+            <tr>
+              <td><input id="maxnumber" type="number" value="100" /></td>
+              <td>
+                <input type="radio" name="outputtype" id="radio-table" checked />TABLEタグ
+                <input type="radio" name="outputtype" id="radio-comma"/>カンマ区切り
+              </td>
+            </tr>
+          </table>
+        </td>
       </tr>
     </table>
+  </div>
+  <div>
     <button onclick="createRandamData();">作成</button>
     <button onclick="focusResult();">クリップボードにコピー</button>
   </div>

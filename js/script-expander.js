@@ -44,13 +44,19 @@ const createExpandData = () => {
     if(document.getElementById('radio-datedurationrandam').checked){
       const LINE = array[k].split(',');
       console.log(LINE);
-      output += '<td>' + LINE[0] + '</td><td>' + LINE[1] + '</td>';
+
+      if(document.getElementById('radio-table').checked){
+        output += '<td>' + LINE[0] + '</td><td>' + LINE[1] + '</td>';
+      }else if(document.getElementById('radio-comma').checked){
+        output += '<td>' + LINE[0] + ',' + LINE[1] + ',</td>';
+      }
     }else{
       output += '<td>' + array[k] + '</td>';
     }
     output += '</tr>'
   }
   output += '</table>';
+
   document.getElementById('area-result').innerHTML = output;
 }
 
