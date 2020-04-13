@@ -100,4 +100,5 @@ const focusResult = () => {
   range.selectNodeContents(document.getElementById('area-result'));
   window.getSelection().addRange(range);
   document.execCommand('copy');
+  window.getSelection().removeAllRanges();
 }
