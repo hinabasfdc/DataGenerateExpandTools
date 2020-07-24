@@ -1,0 +1,52 @@
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Randam Data Generator</title>
+  <link rel="stylesheet" href="css/style-generatorwithline.css" />
+  <script type="text/javascript" src="js/script-generatorwithline.js"></script>
+</head>
+
+<body>
+  <h1>Randam Data Generator With Line</h1>
+  <table>
+    <tr>
+      <td class="text-align_center">
+        y軸最大値<br />
+        <input class="y-axis-max" type="text" placeholder="最大値"/>
+      </td>
+      <td>
+        <canvas class="canvas01" width="730px" height="360px"></canvas>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input class="radio-numberformat" type="radio" name="outputType" checked="true" value="NumberFormat"/>数値で出力
+      </td>
+      <td>
+        x軸最大値
+        <input class="x-axis-max" type="text" placeholder="最大値" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input class="radio-dateformat" type="radio" name="outputType" checked="true" valeu"DateFormat"/>日付で出力
+      </td>
+      <td>
+        開始日
+        <input class="start-date" type="date" />
+        終了日
+        <input class="end-date" type="date" />
+      </td>
+    </tr>
+  </table>
+  <button class="btn-clear" value="Clear">Clear</button>
+  <button class="btn-getnumofsamples">サンプル数を計算</button>
+  <button class="btn-outputfortable">テーブル形式で出力</button>
+  <button class="btn-copyforclipboard">クリップボードにコピー</button>
+  <hr />
+  <div class="area-result"></div>
+</body>
+
+</html>
