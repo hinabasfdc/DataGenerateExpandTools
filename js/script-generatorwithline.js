@@ -52,8 +52,12 @@ window.onload = () => {
     const max_h = canvas.height;
     const max_w = canvas.width;
 
+    // 縦の最大数を設定
     const y_axis_max = document.querySelector('.y-axis-max').value || 360;
+    if (y_axis_max > 360) y_axis_max = 360;
+    const y_ratio = y_axis_max / max_h;
 
+    // 横の最大数を設定
     let x_axis_max = 730;
     if (document.querySelector('.radio-numberformat').checked) {
       x_axis_max = document.querySelector('.x-axis-max').value || 730;
@@ -62,12 +66,9 @@ window.onload = () => {
       let enddate = new Date(document.querySelector('.end-date').value);
       x_axis_max = ((enddate - startdate) / 86400000) + 1;
     }
-
-    if (y_axis_max > 360) y_axis_max = 360;
     if (x_axis_max > 730) x_axis_max = 730;
 
-    const y_ratio = y_axis_max / max_h;
-
+    // 最大解像度での配列を作成
     let arrayFull = [];
     for (let iw = 0; iw <= max_w; iw++) {
       for (let ih = max_h - 1; ih >= 0; ih--) {
@@ -81,9 +82,9 @@ window.onload = () => {
         }
       }
     }
-
     //console.log(arrayFull.length);
 
+    // 横のバケットサイズの配列を作成
     let bucketArray = [];
     let quotient = Math.floor(max_w / x_axis_max);
     let remainder = max_w % x_axis_max;
@@ -99,10 +100,10 @@ window.onload = () => {
       [bucketArray[i], bucketArray[r]] = [bucketArray[r], bucketArray[i]];
     }
 
+    // 指定の横のサイズでの配列を作成
     let arrayOutput = [];
     let indexFull = 0;
     let bucketH = 0;
-    let total = 0;
     for (let i = 0; i < bucketArray.length; i++) {
       let steps = bucketArray[i];
       for(let s = 0; s < steps; s++){
@@ -111,10 +112,31 @@ window.onload = () => {
       }
 
       let average_y = Math.round(bucketH / steps)
-      total += average_y;
       arrayOutput.push(average_y);
 
       bucketH = 0;
+    }
+
+    //一時的な合計サンプル数を計算
+    let total = 0;
+    for(let i = 0; i < arrayOutput.length; i++){
+      total += arrayOutput[i];
+    }
+
+    // 最大値以上であれば間引く
+    if(document.querySelector('.chkbox-maxlines').checked && document.querySelector('.maxlines').value){
+      let diff = total - document.querySelector('.maxlines').value;
+      if(diff >= 0){
+        for(let i = 0; i < diff; i++){
+          arrayOutput[Math.floor(Math.random()*(arrayOutput.length))] -= 1;
+        }
+      }
+    }
+
+    //最終的な合計サンプル数を計算
+    total = 0;
+    for(let i = 0; i < arrayOutput.length; i++){
+      total += arrayOutput[i];
     }
 
     if (outputStyle == 'culcurateTotal') {
