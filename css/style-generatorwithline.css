@@ -5,3 +5,7 @@
 .text-align_center {
   text-align: center;
 }
+
+.resulttable td {
+  border: 1px solid #AAA;
+}

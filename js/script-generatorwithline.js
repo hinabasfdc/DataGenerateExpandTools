@@ -47,7 +47,7 @@ window.onload = () => {
   }
 
   const getValues = (outputStyle) => {
-    console.log('[DEBUG] Start getValues.');
+    //console.log('[DEBUG] Start getValues.');
 
     const max_h = canvas.height;
     const max_w = canvas.width;
@@ -60,7 +60,7 @@ window.onload = () => {
     } else if (document.querySelector('.radio-dateformat').checked) {
       let startdate = new Date(document.querySelector('.start-date').value);
       let enddate = new Date(document.querySelector('.end-date').value);
-      x_axis_max = (enddate - startdate) / 86400000;
+      x_axis_max = ((enddate - startdate) / 86400000) + 1;
     }
 
     if (y_axis_max > 360) y_axis_max = 360;
@@ -82,7 +82,7 @@ window.onload = () => {
       }
     }
 
-    console.log(arrayFull.length);
+    //console.log(arrayFull.length);
 
     let bucketArray = [];
     let quotient = Math.floor(max_w / x_axis_max);
@@ -118,10 +118,16 @@ window.onload = () => {
     }
 
     if (outputStyle == 'culcurateTotal') {
-      document.querySelector('.area-result').innerHTML = total;
+      let header = '';
+      let values = '';
+      for(let i = 0; i < arrayOutput.length; i++){
+        header += '<td>' + (i + 1) + '</td>';
+        values += '<td>' + arrayOutput[i] + '</td>';
+      }
+      document.querySelector('.area-result').innerHTML = '<table class="resulttable"><tr>' + header + '<td>total</td></tr><tr>' + values + '<td>' + total + '</td></tr></table>';
 
     } else if (outputStyle == 'outputForTable') {
-      let output = '<table>';
+      let output = '<table class="resulttable">';
       let linenum = 1;
       for (let i = 0; i <= arrayOutput.length; i++) {
         let linenumofsamples = arrayOutput[i];
