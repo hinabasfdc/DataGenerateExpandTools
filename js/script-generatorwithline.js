@@ -88,14 +88,14 @@ window.onload = () => {
     let bucketArray = [];
     let quotient = Math.floor(max_w / x_axis_max);
     let remainder = max_w % x_axis_max;
-    for(let i = 0; i < (x_axis_max - remainder); i++){
+    for (let i = 0; i < (x_axis_max - remainder); i++) {
       bucketArray.push(quotient);
     }
-    for(let i = 0; i < remainder; i++){
+    for (let i = 0; i < remainder; i++) {
       bucketArray.push(quotient + 1);
     }
     // シャッフル
-    for(let i = bucketArray.length - 1; i >= 0; i--){
+    for (let i = bucketArray.length - 1; i >= 0; i--) {
       const r = Math.floor(Math.random() * (i + 1));
       [bucketArray[i], bucketArray[r]] = [bucketArray[r], bucketArray[i]];
     }
@@ -106,7 +106,7 @@ window.onload = () => {
     let bucketH = 0;
     for (let i = 0; i < bucketArray.length; i++) {
       let steps = bucketArray[i];
-      for(let s = 0; s < steps; s++){
+      for (let s = 0; s < steps; s++) {
         bucketH += arrayFull[indexFull];
         indexFull++;
       }
@@ -119,35 +119,59 @@ window.onload = () => {
 
     //一時的な合計サンプル数を計算
     let total = 0;
-    for(let i = 0; i < arrayOutput.length; i++){
+    for (let i = 0; i < arrayOutput.length; i++) {
       total += arrayOutput[i];
     }
 
     // 最大値以上であれば間引く
-    if(document.querySelector('.chkbox-maxlines').checked && document.querySelector('.maxlines').value){
+    if (document.querySelector('.chkbox-maxlines').checked && document.querySelector('.maxlines').value) {
       let diff = total - document.querySelector('.maxlines').value;
-      if(diff >= 0){
-        for(let i = 0; i < diff; i++){
-          arrayOutput[Math.floor(Math.random()*(arrayOutput.length))] -= 1;
+
+      if (diff > arrayOutput.length) {
+        let output = '<p>間引き対象数 ' + diff + ' が、x軸分割数 ' + arrayOutput.length + ' より大きいため実行できません。y軸の最大数を減らして全体数を調整してから再度実行してください。</p>';
+        document.querySelector('.area-result').innerHTML = output;
+        return;
+      }
+
+      let adjustproceed = 0;
+      for (let i = 0; i < diff; i++) {
+        let rndnum = Math.floor(Math.random() * (arrayOutput.length));
+        arrayOutput[rndnum] -= 1;
+
+        // もし 0 以下になった場合は 0 に変更
+        if(arrayOutput[rndnum] < 0){
+          arrayOutput[rndnum] = 0;
+          i--;
+          adjustproceed++;
+        } 
+
+        // 補正回数が横幅最大数を超えた場合
+        if(adjustproceed > arrayOutput.length){
+          let output = '<p>間引き補正回数(0以下の場合に0に戻す)が、x軸分割数 ' + arrayOutput.length + ' を超えました。y軸の最大数を減らして全体数を調整してから再度実行してください。</p>';
+          document.querySelector('.area-result').innerHTML = output;
+          return;
         }
       }
     }
 
     //最終的な合計サンプル数を計算
     total = 0;
-    for(let i = 0; i < arrayOutput.length; i++){
+    for (let i = 0; i < arrayOutput.length; i++) {
       total += arrayOutput[i];
     }
 
+    //// ここから最終出力を生成
+    // 横軸でのサンプル数表示
     if (outputStyle == 'culcurateTotal') {
       let header = '';
       let values = '';
-      for(let i = 0; i < arrayOutput.length; i++){
+      for (let i = 0; i < arrayOutput.length; i++) {
         header += '<td>' + (i + 1) + '</td>';
         values += '<td>' + arrayOutput[i] + '</td>';
       }
-      document.querySelector('.area-result').innerHTML = '<table class="resulttable"><tr>' + header + '<td>total</td></tr><tr>' + values + '<td>' + total + '</td></tr></table>';
+      document.querySelector('.area-result').innerHTML = '<table class="resulttable"><tr><td>total</td>' + header + '</tr><tr><td>' + total + '</td>' + values + '</tr></table>';
 
+    // テーブル形式での出廬y区
     } else if (outputStyle == 'outputForTable') {
       let output = '<table class="resulttable">';
       let linenum = 1;
@@ -156,9 +180,11 @@ window.onload = () => {
         if (linenumofsamples > 0) {
           for (let j = 0; j < linenumofsamples; j++) {
 
+            // 数値出力
             if (document.querySelector('.radio-numberformat').checked) {
               output += '<tr><td>' + linenum + '</td><td>' + (i + 1) + '</td><td>1</td></tr>';
-            
+
+            // 日付出力
             } else if (document.querySelector('.radio-dateformat').checked) {
               let date = new Date(document.querySelector('.start-date').value);
               date.setDate(date.getDate() + i);
@@ -173,6 +199,7 @@ window.onload = () => {
     }
   }
 
+  // テーブルエリアを選択状態にしてクリップボードコピーを実行
   const focusResult = () => {
     let range = document.createRange();
     range.selectNodeContents(document.querySelector('.area-result'));
@@ -181,6 +208,7 @@ window.onload = () => {
     window.getSelection().removeAllRanges();
   }
 
+  // 各種イベントを設定
   canvas.addEventListener('mousedown', dragStart);
   canvas.addEventListener('mouseup', dragEnd);
   canvas.addEventListener('mouseout', dragEnd);
